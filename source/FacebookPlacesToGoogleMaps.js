@@ -9,14 +9,18 @@
 function fetchLatitudeAndLongitude () {
 	try {
 		
+		GM_log('Start looking for the pagelet_place_info');
 		// A pain to drill down to find the right element - you need to know the id or name of the element.
 		// This will be replaced with JQuery later - don't worry - the logic won't change
-		var divPagelet_Place_info = document.getElementById('pagelet_place_info');
-
-		// div/div/div...[1]/div...[1]/div/div...[1]/img
+		var divPagelet_Place_info = document.getElementById('pagelet_info');
+		GM_log('Found pagelet_place_info');
+		
+		// div[0]/div[0]/div[1]/div[1]/div[0]//img
 		bingImgReference = divPagelet_Place_info.childNodes[0].childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];		
-		// GM_log("Found Bing Image = " + iFrameReference.src);
+		GM_log("Found Bing Image = " + bingImgReference);
+		
 		var bingMapsImageSrc = bingImgReference.src;
+		GM_log('bingMapsImageSrc = ' + bingMapsImageSrc);
 		
 		// If the current image is already replaced, don't spend more time constructing a Google Maps image again
 		if(alreadyReplacedNew(bingImgReference)) { return; }
@@ -24,6 +28,7 @@ function fetchLatitudeAndLongitude () {
 		var coordinateURL = fetchURLParameter(bingMapsImageSrc, 'url');
 		coordinateURL = unescape(coordinateURL);
 		coordinateURL = unescape(coordinateURL);
+		
 		GM_log('Coordinate URL = ' + coordinateURL);
 		var coordinates = fetchURLParameter(coordinateURL, 'ppl');
 		//GM_log('Coordinates = ' + coordinates);
@@ -35,14 +40,16 @@ function fetchLatitudeAndLongitude () {
 		GM_log('Latitude = ' + latitude + ' Longitude = ' + longitude);
 		
 		var imageWidth = bingImgReference.width;
-		var imageHeight = bingImgReference.height;
+		var imageHeight = bingImgReference.height + 200;
 		
 		var googleMapsDimensions = imageWidth + 'x' + imageHeight;
 		
 		var latlong = latitude + ',' + longitude;
 		var googleMapsStaticURL = 'http://maps.google.com/maps/api/staticmap?center=' + latlong + '&zoom=14&size=' + googleMapsDimensions + '&sensor=false&markers=color:red|label:.|' + latlong;
 		bingImgReference.src = googleMapsStaticURL;
-
+		bingImgReference.height = imageHeight;
+		
+		GM_Log('Facebook places - now replaced Bing Maps with Static Google Map image');
 		
 	} catch(ex) {
 		GM_log("Error encountered " + ex.description); 
