@@ -20,7 +20,10 @@ function fetchLatitudeAndLongitude () {
         GM_log('Found pagelet_place_info');
 
         // 0/1/1/0/1
+        /*
         bingImgReference = divPagelet_Place_info.childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];
+        */
+		var bingImgReference = $('.mtm img.img', divPagelet_Place_info);
         GM_log("Found Bing Image = " + bingImgReference);
 
         var bingMapsImageSrc = bingImgReference.src;
