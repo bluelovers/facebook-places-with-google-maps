@@ -80,7 +80,10 @@ function fetchLatitudeAndLongitude () {
     Checks using a variable if the maps image has been replaced
 */
 function alreadyReplacedNew(bingImageRef) {
+	/*
     var src = bingImageRef.src;
+    */
+    var src = $(bingImageRef).attr('src');
     if(src.indexOf('http://maps.google.com') >= 0) {
         GM_log('Google Maps already loaded, skipping');
         return true;
