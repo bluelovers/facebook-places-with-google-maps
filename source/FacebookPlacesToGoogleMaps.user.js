@@ -60,8 +60,14 @@ function fetchLatitudeAndLongitude () {
 
         var latlong = latitude + ',' + longitude;
         var googleMapsStaticURL = 'http://maps.google.com/maps/api/staticmap?center=' + latlong + '&zoom=14&size=' + googleMapsDimensions + '&sensor=false&markers=color:red|label:.|' + latlong;
-        bingImgReference.src = googleMapsStaticURL;
+        /*
+		bingImgReference.src = googleMapsStaticURL;
         bingImgReference.height = imageHeight;
+        */
+        bingImgReference.attr({
+        	src : googleMapsStaticURL,
+        	height : imageHeight
+        });
 
         GM_Log('Facebook places - now replaced Bing Maps with Static Google Map image');
 
