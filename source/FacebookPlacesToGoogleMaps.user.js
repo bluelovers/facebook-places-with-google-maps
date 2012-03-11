@@ -49,8 +49,12 @@ function fetchLatitudeAndLongitude () {
         var longitude = coordinatesArray[3];
         GM_log('Latitude = ' + latitude + ' Longitude = ' + longitude);
 
-        var imageWidth = bingImgReference.width;
+        /*
+		var imageWidth = bingImgReference.width;
         var imageHeight = bingImgReference.height + 200;
+        */
+        var imageWidth = bingImgReference.attr('width');
+        var imageHeight = bingImgReference.attr('height') + 200;
 
         var googleMapsDimensions = imageWidth + 'x' + imageHeight;
 
