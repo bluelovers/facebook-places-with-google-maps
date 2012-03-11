@@ -13,7 +13,10 @@ function fetchLatitudeAndLongitude () {
         GM_log('Start looking for the pagelet_place_info');
         // A pain to drill down to find the right element - you need to know the id or name of the element.
         // This will be replaced with JQuery later - don't worry - the logic won't change
-        var divPagelet_Place_info = document.getElementById('pagelet_info');
+        /*
+		var divPagelet_Place_info = document.getElementById('pagelet_info');
+		*/
+		var divPagelet_Place_info = $('#pagelet_info');
         GM_log('Found pagelet_place_info');
 
         // 0/1/1/0/1
