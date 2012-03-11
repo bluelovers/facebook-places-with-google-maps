@@ -7,8 +7,9 @@
 // @require		http://code.jquery.com/jquery-latest.pack.js
 // ==/UserScript==
 
+$(function() {
 function fetchLatitudeAndLongitude () {
-    try {
+	try {
 
         GM_log('Start looking for the pagelet_place_info');
         // A pain to drill down to find the right element - you need to know the id or name of the element.
@@ -16,14 +17,14 @@ function fetchLatitudeAndLongitude () {
         /*
 		var divPagelet_Place_info = document.getElementById('pagelet_info');
 		*/
-		var divPagelet_Place_info = $('#pagelet_info');
+		var divPagelet_Place_info = $('#pagelet_info .mtm');
         GM_log('Found pagelet_place_info');
 
         // 0/1/1/0/1
         /*
         bingImgReference = divPagelet_Place_info.childNodes[0].childNodes[1].childNodes[1].childNodes[0].childNodes[1];
         */
-		var bingImgReference = $('.mtm img.img', divPagelet_Place_info);
+		var bingImgReference = $('img.img', divPagelet_Place_info);
         GM_log("Found Bing Image = " + bingImgReference);
 
         /*
@@ -64,15 +65,28 @@ function fetchLatitudeAndLongitude () {
 		bingImgReference.src = googleMapsStaticURL;
         bingImgReference.height = imageHeight;
         */
-        bingImgReference.attr({
-        	src : googleMapsStaticURL,
-        	height : imageHeight
-        });
+		bingImgReference
+			.attr('src', googleMapsStaticURL)
+			.height(imageHeight)
+		;
 
-        GM_Log('Facebook places - now replaced Bing Maps with Static Google Map image');
+        GM_log('Facebook places - now replaced Bing Maps with Static Google Map image');
 
-    } catch(ex) {
-        GM_log("Error encountered " + ex.description);
+        var googleMapsURL = 'http://maps.google.com/maps?q=' + latlong;
+
+        GM_log('googleMapsURL - ' + googleMapsURL);
+
+        divPagelet_Place_info
+        	.on('click', 'img, a', function(event){
+				doane(event);
+				window.open(googleMapsURL);
+        	})
+       	;
+
+       	GM_log('now click divPagelet_Place_info will open googleMapsURL');
+
+	} catch(ex) {
+        GM_log("Error encountered " + ex.description + ex.message);
     }
 }
 
@@ -111,11 +125,15 @@ function fetchURLParameter(fullURL, paramName) {
 }
 
 // Wait till the page has loaded
+/*
 if (!window.top || top.location.href == window.location.href) {
   setInterval(function() {
     fetchLatitudeAndLongitude();
   }, 2000);
 }
+*/
+
+fetchLatitudeAndLongitude();
 
 /**
  * @link http://phpjs.org/functions/intval:435
@@ -150,3 +168,16 @@ function intval (mixed_var, base) {
         return 0;
     }
 }
+
+function doane(event, preventDefault, stopPropagation) {
+
+	if ($.type(preventDefault) == 'undefined') preventDefault = 1;
+	if ($.type(stopPropagation) == 'undefined') stopPropagation = 1;
+
+	if (preventDefault) event.preventDefault();
+	if (stopPropagation) event.stopPropagation();
+
+	return false;
+}
+
+});
