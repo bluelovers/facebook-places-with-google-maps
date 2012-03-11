@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name		Facebook Places - With Google Maps
-// @namespace	http://swaroop.in
+// @namespace	http://bluelovers.net
 // @description	Facebook places by default has Bing maps, but if you wish to have Google Maps instead. This is the right script for you
 //
 // @author		Swaroop
