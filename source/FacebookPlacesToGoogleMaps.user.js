@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name		Facebook Places - With Google Maps
+// @name		Facebook Places - With Google Maps - SC
 // @namespace	http://bluelovers.net
 // @description	Facebook places by default has Bing maps, but if you wish to have Google Maps instead. This is the right script for you
 //
