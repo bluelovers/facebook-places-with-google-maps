@@ -1,9 +1,13 @@
 // ==UserScript==
-// @name           Facebook Places - With Google Maps
-// @namespace      http://swaroop.in
-// @description    Facebook places by default has Bing maps, but if you wish to have Google Maps instead. This is the right script for you
-// @include        http://www.facebook.com/pages/*
-// @include        http://facebook.com/pages/*
+// @name		Facebook Places - With Google Maps - SC
+// @namespace	http://bluelovers.net
+// @description	Facebook places by default has Bing maps, but if you wish to have Google Maps instead. This is the right script for you
+//
+// @author		Swaroop
+// @author		bluelovers
+//
+// @include		http://www.facebook.com/pages/*
+// @include		http://facebook.com/pages/*
 // @require		http://code.jquery.com/jquery-latest.pack.js
 // ==/UserScript==
 
