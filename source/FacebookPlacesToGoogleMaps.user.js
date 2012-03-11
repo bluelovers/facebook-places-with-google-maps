@@ -53,8 +53,8 @@ function fetchLatitudeAndLongitude () {
 		var imageWidth = bingImgReference.width;
         var imageHeight = bingImgReference.height + 200;
         */
-        var imageWidth = bingImgReference.attr('width');
-        var imageHeight = bingImgReference.attr('height') + 200;
+        var imageWidth = intval(bingImgReference.attr('width'));
+        var imageHeight = intval(bingImgReference.attr('height')) + 200;
 
         var googleMapsDimensions = imageWidth + 'x' + imageHeight;
 
