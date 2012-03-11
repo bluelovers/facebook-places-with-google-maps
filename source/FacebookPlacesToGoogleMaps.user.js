@@ -26,7 +26,10 @@ function fetchLatitudeAndLongitude () {
 		var bingImgReference = $('.mtm img.img', divPagelet_Place_info);
         GM_log("Found Bing Image = " + bingImgReference);
 
-        var bingMapsImageSrc = bingImgReference.src;
+        /*
+		var bingMapsImageSrc = bingImgReference.src;
+		*/
+		var bingMapsImageSrc = bingImgReference.attr('src');
         GM_log('bingMapsImageSrc = ' + bingMapsImageSrc);
 
         // If the current image is already replaced, don't spend more time constructing a Google Maps image again
