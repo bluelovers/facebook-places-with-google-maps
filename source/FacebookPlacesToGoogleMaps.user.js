@@ -6,8 +6,8 @@
 // @author		Swaroop
 // @author		bluelovers
 //
-// @include		http://www.facebook.com/pages/*
-// @include		http://facebook.com/pages/*
+// @include		http*://www.facebook.com/pages/*
+// @include		http*://facebook.com/pages/*
 // @require		http://code.jquery.com/jquery-latest.pack.js
 // ==/UserScript==
 
